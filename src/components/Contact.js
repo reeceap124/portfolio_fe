@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 
+
 export default function Contact() {
     const [email, setEmail] = useState({
         name: '',
@@ -10,18 +11,30 @@ export default function Contact() {
         message: ''
     })
     const [sent, setSent] = useState(false)
+    const [sending, setSending]= useState(false)
     const handleChanges = (e) => {
         e.preventDefault();
         setEmail({...email, [e.target.name]:e.target.value})
 
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setSending(true);
         axios.post('https://reeces-portfolio.herokuapp.com/api/email', email)
             .then(res => {
                 console.log(res)
-                setSent(true)
+                setEmail({
+                    name: '',
+                    company: '',
+                    email: '',
+                    phone: '',
+                    message: ''
+                })
+                setSent(true);
+                setSending(false);
             })
+            
             .catch(err=>{
                 console.error(err)
             })
@@ -37,6 +50,7 @@ export default function Contact() {
                 <label>Message:<textarea name='message' rows='5' value={email.message}  onChange={handleChanges}></textarea></label>
                 <button type='submit'>Send</button>
             </form>
+            {!sent && sending? <p>Sending</p>: null}
             {sent?<p>Message Sent!</p>:null}
         </div> //end contact wrapper
         
