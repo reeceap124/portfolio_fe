@@ -34,4 +34,23 @@ $bg-secondary: #141418;
       color: black;
     }
   }
+
+  @media screen and (min-width: 500px) {
+    flex-direction: column;
+
+    main {
+      margin: 5%;
+      margin-top: 2%;
+    }
+    
+    .navWrapper {
+      margin-bottom: 0;
+      justify-content: space-between;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    margin: 2% 10%;
+  }
+
 }

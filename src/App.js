@@ -20,6 +20,8 @@ function App() {
       <Route path='/about' component={About}/>
       <Route path='/work' component ={ProjectsPage}/>
       <Route path='/contact' component={Contact}/>
+      <Route path='/login' />
+      <Route path='/projects'/>
     </div>
   );
 }
