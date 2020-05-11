@@ -40,14 +40,14 @@ export default function Contact() {
             })
     }
     return (
-        <div className='contactWrapper'>
-            <h3>Email Me</h3>
-            <form onSubmit={handleSubmit}>
-                <label>Name:<input type='text' name='name' value={email.name}  onChange={handleChanges}/></label>
-                <label>Company:<input type='text' name='company' value={email.company}  onChange={handleChanges}/></label>
-                <label>Email:<input type='text' name='email' value={email.email}  onChange={handleChanges}/></label>
-                <label>Phone:<input type='text' name='phone' value={email.phone}  onChange={handleChanges}/></label>
-                <label>Message:<textarea name='message' rows='5' value={email.message}  onChange={handleChanges}></textarea></label>
+        <div className='contentWrapper'>
+            <form className='contactWrapper' onSubmit={handleSubmit}>
+                <h1>Email Me</h1>
+                <label for='name'>Name:</label><input type='text' id='name' name='name' value={email.name}  onChange={handleChanges}/>
+                <label for='company'>Company:</label><input type='text' id='company' name='company' value={email.company}  onChange={handleChanges}/>
+                <label for='email'>Email:</label><input type='text' id='email' name='email' value={email.email}  onChange={handleChanges}/>
+                <label for='phone'>Phone:</label><input type='text' id='phone' name='phone' value={email.phone}  onChange={handleChanges}/>
+                <label for='message'>Message:</label><textarea id='message' name='message' rows='5' value={email.message}  onChange={handleChanges}></textarea>
                 <button type='submit'>Send</button>
             </form>
             {!sent && sending? <p>Sending</p>: null}

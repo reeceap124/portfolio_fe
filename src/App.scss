@@ -5,52 +5,120 @@ $bg-secondary: #141418;
 
 
 :root{
-  text-align: center;
+  text-align: start;
   font-size: 16px;
 }
+
+// .App * {
+//   border: 1px solid gray;
+// }
 
 .App {
   color: black;
   background-color: white;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  max-height: 90vh;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  
 
-  main {
-    margin: 10%;
+  .contentWrapper {
+    height: 90%;
+    margin: 5%;
     margin-bottom: auto;
-    text-align: left;
+    overflow: scroll;
+
+    .contactWrapper {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        margin: 2% 0;
+      }
+
+      button {
+        margin: 10% 25%;
+      }
+    }
   }
   .navWrapper {
-    margin: 5%;
-    margin-bottom: 10%;
+    position: fixed;
+    width: 90%;
+    bottom: 0;
+    background: whitesmoke;
+    margin: 2% 5%;
     display: flex;
     justify-content: space-around;
     
-    a{
+    .navLink{
       text-decoration: none;
       color: black;
+      margin-left: 5%;
+      padding: 1%;
+      border-radius: 3px;
+    }
+
+    .navHome {
+      margin: 0 auto 0 0;
+    }
+
+    .navLink:hover {
+      color: white;
+      background: steelblue
+    }
+    
+  }
+
+  .cta {
+    margin-top: 20%;
+    text-align: center;
+
+    img {
+      max-width: 100%;
     }
   }
 
   @media screen and (min-width: 500px) {
     flex-direction: column;
 
-    main {
+    .contentWrapper {
+      height: 100vh;
       margin: 5%;
-      margin-top: 2%;
+      margin-top: 5%;
+      overflow: visible;
     }
     
     .navWrapper {
-      margin-bottom: 0;
+      top: 0;
+      bottom: auto;
       justify-content: space-between;
+
+      .navLink {
+        padding-right: 1%;
+      }
+    }
+
+    .contactWrapper {
+      margin: auto;
+      max-width: 60%; 
     }
   }
 
   @media screen and (min-width: 1000px) {
-    margin: 2% 10%;
+    margin: 3% 10%;
+    max-height: 85vh;
+    
+    .navWrapper {
+      margin: 2% 4%;
+      width: 75%;
+      
+    }
+
+    .cta {
+      margin-top: 10%;
+    }
+
   }
 
 }
