@@ -14,14 +14,27 @@ $primary: #074faf;
 //   border: 1px solid gray;
 // }
 body {
-  background-image: url('./assets/mountain_bg.jpg') white;
-  background-size: contain;
+  height: 100vh;
+  background: url('./assets/mountain_bg.jpg') no-repeat;
+  background-size: 225%;
+  @media screen and (min-width: 500px) {
+    height: 90vh;
+  }
+  @media screen and (min-width: 1000px) {
+    background-size: 150%;
+  }
+  @media screen and (min-width: 1200px) {
+    background-size: 130%
+  }
+  @media screen and (min-width: 1400px) {
+    background-size: 100%
+  }
 }
 .App {
   color: black;
   margin: 0;
   padding: 0;
-  max-height: 90vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
 
@@ -31,33 +44,65 @@ body {
   
 
   .contentWrapper {
-    height: 90%;
+    backdrop-filter: brightness(125%) blur(2px);
+    max-height: 100%;
+    height: 100%;
     margin: 5%;
+    padding: 0 1% 3% 1%;
     margin-bottom: auto;
-    overflow: scroll;
+    overflow: auto;
+    border-radius: 3px;
 
+    .projectsWrapper {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  .contactContent {
+    backdrop-filter: brightness(100%) blur(2px);
+    height:auto;
+    padding: 0;
     .contactWrapper {
       display: flex;
       flex-direction: column;
+      margin: 0 auto;
+      padding: 2% 5%;
+      background-color: rgba(0,0,0, .1); 
+      .required {
+        color: red;
+      }
 
       input {
         margin: 2% 0;
+        border: none;
       }
 
+
       button {
-        margin: 10% 25%;
+        font-size: 1rem;
+        margin: 10% 25% 5% 25%;
+        padding: 1% 2%;
+        border: none;
+        border-radius: 5px;
+        background: $primary;
+        color: white;
+        
       }
     }
   }
+
   .navWrapper {
     position: fixed;
+    z-index: 99;
     width: 90%;
     bottom: 0;
-    background: whitesmoke;
-    margin: 2% 5%;
+    background-color: rgba(255, 255, 255, .8);
+    margin: 5%;
     display: flex;
     justify-content: space-around;
-    
+    border-radius: 3px;
+
     .navLink{
       text-decoration: none;
       color: black;
@@ -83,17 +128,49 @@ body {
 
     img {
       max-width: 100%;
+      // background-color: rgba(255, 255, 255, .5);
+    }
+    button {
+      font-size: 1rem;
+      margin-top: 2%;
+      padding: 1% 2%;
+      border: none;
+      border-radius: 5px;
+      background: $primary;
+      color: white;
     }
   }
 
   @media screen and (min-width: 500px) {
     flex-direction: column;
 
+  
+
     .contentWrapper {
-      height: 100vh;
+      backdrop-filter: brightness(130%) blur(3px);
+      height: 90vh;
       margin: 5%;
-      margin-top: 5%;
-      overflow: visible;
+      margin-top: 10%;
+      overflow: auto;
+    }
+
+    .contactContent {
+      backdrop-filter: brightness(100%) blur(2px);
+      height: auto;
+      padding: 0;
+
+      .contactWrapper {
+        padding-top: 1%;
+        margin: 0;
+        
+        input {
+          width: 60%;
+        }
+        button {
+          margin-top: 5%;
+        }
+
+      }
     }
     
     .navWrapper {
@@ -106,35 +183,49 @@ body {
       }
     }
 
-    .contactWrapper {
-      margin: auto;
-      max-width: 60%; 
-    }
+    
   }
 
   @media screen and (min-width: 1000px) {
-    margin: 3% 10%;
-    max-height: 80vh;
+    margin: 3% 10% 0 10%;
+    height: 93vh;
+
+
+    .contentWrapper {
+      margin-top: 5%;
+      padding-top: 0;
+      overflow: auto;
+    }
     
     .navWrapper {
       margin: 2% 4%;
-      width: 75%;
+      width: 72%;
       
     }
 
     .cta {
-      margin-top: 5%;
-      button {
-        font-size: 1rem;
-        margin-top: 2%;
-        padding: 1% 2%;
-        border: none;
-        border-radius: 5px;
-        background: $primary;
-        color: white;
-      }
+      margin: 5% auto 0;
+      
+    }
+    
+
+  }
+
+  @media screen and (min-width: 1300px) {
+    .cta {
+      margin-top: 2%;
     }
 
+    .contactWrapper{
+      label {
+        padding: 0;
+        margin: 0;
+      }
+      input {
+        margin: 0;
+        padding: 0;
+      }
+    }
   }
 
 }

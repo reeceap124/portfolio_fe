@@ -3,7 +3,7 @@ import React from 'react';
 const About = (props) => {
     console.log('*** MY about state ***', props.goTo)
     return(
-        <div className='contentWrapper'>
+        <div className='contentWrapper aboutWrapper'>
         <h1>A Bit About Me</h1>
         <section>
             <h2 id='skills'>Skills</h2>

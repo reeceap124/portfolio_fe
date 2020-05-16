@@ -11,16 +11,20 @@ export default function Contact() {
         message: ''
     })
     const [sent, setSent] = useState(false)
-    const [sending, setSending]= useState(false)
+    const [message, setMessage] = useState('Send')
     const handleChanges = (e) => {
         e.preventDefault();
         setEmail({...email, [e.target.name]:e.target.value})
 
     }
+    const missingFieldsMessage = 'Missing required fields *';
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setSending(true);
+        if (email.email.trim() === '' || email.message.trim() === '') {
+            setMessage(missingFieldsMessage);
+        } else {
+            setMessage('Sending');
         axios.post('https://reeces-portfolio.herokuapp.com/api/email', email)
             .then(res => {
                 console.log(res)
@@ -31,27 +35,32 @@ export default function Contact() {
                     phone: '',
                     message: ''
                 })
-                setSent(true);
-                setSending(false);
+                setMessage('Sent! Thanks for reaching out. I will get back to you A.S.A.P')
             })
             
             .catch(err=>{
                 console.error(err)
+                setMessage('Sorry, failed to send.')
             })
+        }
+        
     }
     return (
-        <div className='contentWrapper'>
+        <div className='contentWrapper contactContent'>
             <form className='contactWrapper' onSubmit={handleSubmit}>
                 <h1>Email Me</h1>
-                <label for='name'>Name:</label><input type='text' id='name' name='name' value={email.name}  onChange={handleChanges}/>
-                <label for='company'>Company:</label><input type='text' id='company' name='company' value={email.company}  onChange={handleChanges}/>
-                <label for='email'>Email:</label><input type='text' id='email' name='email' value={email.email}  onChange={handleChanges}/>
-                <label for='phone'>Phone:</label><input type='text' id='phone' name='phone' value={email.phone}  onChange={handleChanges}/>
-                <label for='message'>Message:</label><textarea id='message' name='message' rows='5' value={email.message}  onChange={handleChanges}></textarea>
-                <button type='submit'>Send</button>
+                
+                <label htmlFor='name'><span className='required'>*</span>Name:</label><input type='text' id='name' name='name' value={email.name}  onChange={handleChanges}/>
+                <label htmlFor='company'>Company:</label><input type='text' id='company' name='company' value={email.company}  onChange={handleChanges}/>
+                <label htmlFor='email'><span className='required'>*</span>Email:</label><input type='text' id='email' name='email' value={email.email}  onChange={handleChanges}/>
+                <label htmlFor='phone'>Phone:</label><input type='text' id='phone' name='phone' value={email.phone}  onChange={handleChanges}/>
+                <label htmlFor='message'><span className='required'>*</span>Message:</label><textarea id='message' name='message' rows='5' value={email.message}  onChange={handleChanges}></textarea>
+
+                <button type='submit'>{message}</button>
+                
+                
             </form>
-            {!sent && sending? <p>Sending</p>: null}
-            {sent?<p>Message Sent!</p>:null}
+            
         </div> //end contact wrapper
         
     )
