@@ -55,7 +55,23 @@ body {
 
     .projectsWrapper {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-around;
+      .projectCard{
+        margin: 5% 5%;
+      }
+      
+    }
+    .projectModal {
+      position: fixed;
+      top: 5%;
+      background: whitesmoke;
+      height: 95%;
+      z-index: 99;
+
+      form {
+        margin: 5% 2%;
+      }
     }
   }
 

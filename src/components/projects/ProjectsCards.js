@@ -1,19 +1,23 @@
 import React from 'react'
+import { editProject } from './methods';
 
 const ProjectCard = (props) => {
-    console.log('props', props)
-    const p = props.project
-    console.log('p log', p)
+    const p = props.project;
+    const data = p.imgRef;
+    console.log('DATA', data)
+    console.log('the project', p)
+    
     return (
-        <div>
+        <div className='projectCard'>
             <h2>{p.name}</h2>
-            <img src={p.imgRef} alt='project'/>
+            {(data !== null)?<img src={`data:image/jpeg;base64,${data}`} alt='project'/>:<img src={undefined} alt='project'/>}
             <p>{p.technologies}</p>
             <p>{p.description}</p>
             <div>
                 <a href={p.githubLink}>Github Link</a>
                 <a href={p.deployLink}>Deployed</a>
             </div>
+            {props.admin?<div><button onClick={editProject(p.id)}>Edit</button><button>Delete</button></div>:null}
         </div>
     )
 }

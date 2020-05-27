@@ -1,14 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import {useHistory} from 'react-router-dom'
 import ProjectCard from './ProjectsCards';
 import { useOktaAuth } from '@okta/okta-react';
+import ProjectsModal from './ProjectsModal';
 
 
 const Work = () => {
+    const history = useHistory()
     const { authState, authService } = useOktaAuth();
-    const login = () =>authService.login('/admin_work');
+    const login = () => authService.login('/admin_work');
+    const logout = async () => {
+        await authService.logout('/work')
+    };
     const [projects, setProjects] = useState([])
     const [admin, setAdmin] = useState(null)
+    const [modal, setModal] = useState({
+        open: false,
+        type: null
+    })
     useEffect(()=>{
         if (!authState.isAuthenticated) { 
             setAdmin(false)
@@ -19,23 +29,33 @@ const Work = () => {
     useEffect(()=>{
         axios.get('http://localhost:3300/api/projects')
         .then(res => {
-            console.log('get request res', res.data)
             setProjects(res.data)
         })
         .catch(err=>{
             console.log('There was an error', err)
         })
-    }, [])
-    
+    }, []);
+
+    const handleModal = (type) => {
+        setModal({
+            open: true,
+            type: type
+        })
+    }
+
+    //makes sure that when logged in path name is '/admin_work'
+    if (admin && history.location.pathname !== '/admin_work') {
+        history.replace('/admin_work');
+    } 
+
     return(
         <div className='contentWrapper'>
             <h1>Recent work</h1>
-            {authState.isPending?<p>Loading authentication...</p>:(!authState.isAuthenticated?<div><button type='button' onClick={login}>Login</button></div>:null)}
+            {authState.isPending?<p>Loading authentication...</p>:(!authState.isAuthenticated?<div><button type='button' onClick={login}>Login</button></div>:<div><button type='button' onClick={logout}>Log Out</button> <button type='button' onClick={()=>handleModal('add')}>Add New Project</button></div>)}
             <div className='projectsWrapper'>
-                {console.log('projects', projects)}
-                {projects.map(val => <ProjectCard project={val} admin={admin}/>)}
+                {projects.map(val => <ProjectCard key={val.id} project={val} admin={admin}/>)}
             </div>
-            
+            {modal.open?<ProjectsModal modal={modal} setModal={setModal}/>:null}
         </div>
     )
 }
