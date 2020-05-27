@@ -64,9 +64,12 @@ body {
     }
     .projectModal {
       position: fixed;
-      top: 5%;
+      top: 0;
+      left: 0;
       background: whitesmoke;
-      height: 95%;
+      height: 100%;
+      width: 96%;
+      padding: 2%;
       z-index: 99;
 
       form {
@@ -168,6 +171,55 @@ body {
       margin: 5%;
       margin-top: 10%;
       overflow: auto;
+
+      .projectCard {
+        max-width: 40%;
+      }
+
+      .modalBack {
+        position: fixed;
+        z-index: 98;
+        top: 0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0, .3);
+      }
+
+      .projectModal {
+        position: fixed;
+        top: 0;
+        margin: 5% 17%;
+        height: 50%;
+        width: 60%;
+        padding: 2%;
+        z-index: 99;
+        background-color: whitesmoke;
+  
+        form {
+          margin: 5% 10%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          button {
+            margin:3% 5% 0 0;
+          }
+        }
+        .modalInput{
+          margin-bottom: 2%;
+          width:90%;
+          display: flex;
+          justify-content: space-between;
+          .fileSelect {
+            padding-right: 0;
+            background: white;
+          }
+        }
+      }
+    }
+
+    .modalOpen {
+      overflow: hidden;
     }
 
     .contactContent {
@@ -185,8 +237,8 @@ body {
         button {
           margin-top: 5%;
         }
-
       }
+
     }
     
     .navWrapper {
@@ -200,6 +252,8 @@ body {
     }
 
     
+
+    
   }
 
   @media screen and (min-width: 1000px) {
@@ -211,6 +265,9 @@ body {
       margin-top: 5%;
       padding-top: 0;
       overflow: auto;
+    }
+    .modalOpen {
+      overflow: hidden;
     }
     
     .navWrapper {

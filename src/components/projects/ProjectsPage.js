@@ -36,10 +36,11 @@ const Work = () => {
         })
     }, []);
 
-    const handleModal = (type) => {
+    const handleModal = (type, id) => {
         setModal({
             open: true,
-            type: type
+            type: type,
+            editing:id
         })
     }
 
@@ -49,11 +50,11 @@ const Work = () => {
     } 
 
     return(
-        <div className='contentWrapper'>
+        <div className={'contentWrapper ' + (modal.open?'modalOpen':null)}>
             <h1>Recent work</h1>
             {authState.isPending?<p>Loading authentication...</p>:(!authState.isAuthenticated?<div><button type='button' onClick={login}>Login</button></div>:<div><button type='button' onClick={logout}>Log Out</button> <button type='button' onClick={()=>handleModal('add')}>Add New Project</button></div>)}
             <div className='projectsWrapper'>
-                {projects.map(val => <ProjectCard key={val.id} project={val} admin={admin}/>)}
+                {projects.map(val => <ProjectCard key={val.id} project={val} admin={admin} modal={modal} setModal={setModal} handleModal={handleModal}/>)}
             </div>
             {modal.open?<ProjectsModal modal={modal} setModal={setModal}/>:null}
         </div>
