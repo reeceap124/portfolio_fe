@@ -14,7 +14,8 @@ const Work = () => {
         await authService.logout('/work')
     };
     const [projects, setProjects] = useState([])
-    const [admin, setAdmin] = useState(null)
+    const [admin, setAdmin] = useState(null);
+    const [toEdit, setToEdit] = useState(null)
     const [modal, setModal] = useState({
         open: false,
         type: null
@@ -39,10 +40,11 @@ const Work = () => {
     const handleModal = (type, id) => {
         setModal({
             open: true,
-            type: type,
-            editing:id
+            type: type
         })
     }
+
+    console.log('editing state', toEdit)
 
     //makes sure that when logged in path name is '/admin_work'
     if (admin && history.location.pathname !== '/admin_work') {
@@ -52,11 +54,11 @@ const Work = () => {
     return(
         <div className={'contentWrapper ' + (modal.open?'modalOpen':null)}>
             <h1>Recent work</h1>
-            {authState.isPending?<p>Loading authentication...</p>:(!authState.isAuthenticated?<div><button type='button' onClick={login}>Login</button></div>:<div><button type='button' onClick={logout}>Log Out</button> <button type='button' onClick={()=>handleModal('add')}>Add New Project</button></div>)}
+            {authState.isPending?<p>Loading authentication...</p>:(!authState.isAuthenticated?<div><button type='button' onClick={login}>Admin Login</button></div>:<div><button type='button' onClick={logout}>Log Out</button> <button type='button' onClick={()=>handleModal('add')}>Add New Project</button></div>)}
             <div className='projectsWrapper'>
-                {projects.map(val => <ProjectCard key={val.id} project={val} admin={admin} modal={modal} setModal={setModal} handleModal={handleModal}/>)}
+                {projects.map(val => <ProjectCard key={val.id} project={val} admin={admin} modal={modal} setModal={setModal} handleModal={handleModal} setToEdit={setToEdit}/>)}
             </div>
-            {modal.open?<ProjectsModal modal={modal} setModal={setModal}/>:null}
+            {modal.open?<ProjectsModal modal={modal} setModal={setModal} toEdit={toEdit} setToEdit={setToEdit}/>:null}
         </div>
     )
 }

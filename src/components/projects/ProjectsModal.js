@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 const ProjectsModal = (props) => {
-    const e = props.editing;
-    console.log("here is E", e)
     const [project, setProject] = useState({
         name: '',
         description:'',
@@ -19,27 +17,49 @@ const ProjectsModal = (props) => {
             setEndpoint({method: 'post', uri: `http://localhost:3300/api/projects`})
         } else if (props.modal.type === 'update') {
             setEndpoint({method: 'put', uri: `http://localhost:3300/api/projects/${props.id}`})
-            
+            if(typeof props.toEdit.imgRef === 'object'){ 
+                console.log('imgRef',  typeof props.toEdit.imgRef, props.toEdit.imgRef)
+            }
+            setProject(props.toEdit)
             console.log('updated project',project)
         } else {
             console.log('nothing to see here')
         }
     },[])
 
+    
+    const img2Base64 = (img) => {
+        const reader = new FileReader();
+        reader.onload = function () {
+            const dataURL = reader.result.split(',')[1];
+            setProject({...project, imgRef: dataURL})
+        }
+        reader.readAsDataURL(img)
+    }
+    
+
+    
     const handleChanges = (e) => {
         e.preventDefault();
-        setProject({...project, [e.target.name]: e.target.value})
+        if (e.target.name === 'imgRef') {
+            img2Base64(e.target.files[0]) 
+        } else {
+            setProject({...project, [e.target.name]: e.target.value})
+        }
+        
     }
 
     const handleCancel = (e) => {
         e.preventDefault()
         props.setModal({open:false, type:null})
     }
+
     
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log('I am the endpoint your looking for',endpoint)
+        console.log('project img', project.imgRef)
         axios[endpoint.method](endpoint.uri, project)
         .then(res=> {
             console.log('submitted project data', res)
@@ -48,10 +68,19 @@ const ProjectsModal = (props) => {
             console.log('Woops, there was an error')
         })
         .finally(()=>{
+            setProject({
+                name: '',
+                description:'',
+                technologies:'',
+                deployLink:'',
+                githubLink:'',
+                imgRef:''
+            });
+            props.setToEdit(null)
             props.setModal({
                 open: false,
                 type: null
-            })
+            });
         })
         
     }
@@ -66,7 +95,8 @@ const ProjectsModal = (props) => {
                 <div className='modalInput'><label htmlFor='technologies'>Technologies</label><input type='text' name='technologies' onChange={handleChanges} value={project.technologies}/></div>
                 <div className='modalInput'><label htmlFor='deployLink'>Deploy Link</label><input type='text' name='deployLink' onChange={handleChanges} value={project.deployLink}/></div>
                 <div className='modalInput'><label htmlFor='githubLink'>Github Link</label><input type='text' name='githubLink' onChange={handleChanges} value={project.githubLink}/></div>
-                <div className="modalInput"><label htmlFor='imgRef'>Image</label><input className='fileSelect' type='file' name='imgRef' onChange={handleChanges} value={project.imgRef}/></div>
+                <div className="modalInput"><label htmlFor='imgRef'>Image</label><input className='fileSelect' type='file' name='imgRef' onChange={handleChanges}/></div>
+                <div>{project.imgRef !== ''?<img className='imgSelectDisplay' src={`data:image/jpeg;base64,${project.imgRef}`} alt={`${project.name} display`}/>: null}</div>
                 <div>
                     <button type='submit'>Submit</button>
                     <button type='button' onClick={handleCancel}>Cancel</button>
