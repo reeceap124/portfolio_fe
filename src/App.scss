@@ -192,9 +192,19 @@ body {
         min-width: 40%;
         
       }
+      .fullModal{
+        position: sticky;
+        top:0;
+        left:0;
+        z-index: 95;
+        left:0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      
 
       .modalBack {
-        position: fixed;
+        position: absolute;
         z-index: 98;
         top: 0;
         left:0;
@@ -204,7 +214,7 @@ body {
       }
 
       .projectModal {
-        position: fixed;
+        position: absolute;
         top: 0;
         margin: 5% 17%;
         height: 50%;
@@ -212,12 +222,13 @@ body {
         padding: 2%;
         z-index: 99;
         background-color: whitesmoke;
-  
+        
         form {
           margin: 5% 10%;
           display: flex;
           flex-direction: column;
           justify-content: space-around;
+          
           button {
             margin:3% 5% 0 0;
           }
@@ -236,11 +247,11 @@ body {
           }
         }
       }
+      }
+
+
     }
 
-    .modalOpen {
-      overflow: hidden;
-    }
 
     .contactContent {
       backdrop-filter: brightness(100%) blur(2px);
@@ -288,11 +299,11 @@ body {
       .projectCard {
         max-width: 27%;
       }
-      .modalBack {
-        max-height: 100%;
-      }
-      .projectModal {
-        top: 0px;
+      
+      .fullModal {
+        .projectModal {
+          height: 65%;
+        }
       }
     }
     .modalOpen {
@@ -318,6 +329,10 @@ body {
       margin-top: 2%;
     }
 
+    .projectModal {
+      height: 70%;
+    }
+
     .contactWrapper{
       label {
         padding: 0;
@@ -328,6 +343,8 @@ body {
         padding: 0;
       }
     }
+
+    
   }
 
 }

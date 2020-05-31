@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 const ProjectsModal = (props) => {
+    
     const [project, setProject] = useState({
         name: '',
         description:'',
@@ -16,12 +17,9 @@ const ProjectsModal = (props) => {
         if(props.modal.type === 'add') {
             setEndpoint({method: 'post', uri: `http://localhost:3300/api/projects`})
         } else if (props.modal.type === 'update') {
-            setEndpoint({method: 'put', uri: `http://localhost:3300/api/projects/${props.id}`})
-            if(typeof props.toEdit.imgRef === 'object'){ 
-                console.log('imgRef',  typeof props.toEdit.imgRef, props.toEdit.imgRef)
-            }
+            setEndpoint({method: 'put', uri: `http://localhost:3300/api/projects/${props.toEdit.id}`})
+            console.log('toEdit', props.toEdit)
             setProject(props.toEdit)
-            console.log('updated project',project)
         } else {
             console.log('nothing to see here')
         }
@@ -58,8 +56,6 @@ const ProjectsModal = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('I am the endpoint your looking for',endpoint)
-        console.log('project img', project.imgRef)
         axios[endpoint.method](endpoint.uri, project)
         .then(res=> {
             console.log('submitted project data', res)
@@ -86,7 +82,7 @@ const ProjectsModal = (props) => {
     }
 
     return (
-        <>
+        <div className='fullModal'>
         <div className='modalBack' onClick={handleCancel}></div>
         <div className='projectModal'>
             <form onSubmit={handleSubmit}>
@@ -104,7 +100,7 @@ const ProjectsModal = (props) => {
                 
             </form>
         </div>
-        </>
+        </div>
     );
 
 }
