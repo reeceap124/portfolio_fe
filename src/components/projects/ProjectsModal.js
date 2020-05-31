@@ -18,7 +18,7 @@ const ProjectsModal = (props) => {
             setEndpoint({method: 'post', uri: `http://localhost:3300/api/projects`})
         } else if (props.modal.type === 'update') {
             setEndpoint({method: 'put', uri: `http://localhost:3300/api/projects/${props.toEdit.id}`})
-            console.log('toEdit', props.toEdit)
+            
             setProject(props.toEdit)
         } else {
             console.log('nothing to see here')
@@ -64,6 +64,7 @@ const ProjectsModal = (props) => {
             console.log('Woops, there was an error')
         })
         .finally(()=>{
+            const newP = project
             setProject({
                 name: '',
                 description:'',
@@ -72,11 +73,21 @@ const ProjectsModal = (props) => {
                 githubLink:'',
                 imgRef:''
             });
+            console.log("***BEFORE SETTOEDIT***", props.toEdit.index, props.set)
             props.setToEdit(null)
+            console.log('***BEFOR THE RESET***')
+            if(props.modal.type === 'add') {
+                props.reset([props.set, newP]);
+            } else if (props.modal.type === 'update') {
+                props.reset([...props.set, props.set[props.toEdit.index] = newP])
+            }
+            
+            console.log("***AFTER THE RESET***")
             props.setModal({
                 open: false,
                 type: null
             });
+
         })
         
     }

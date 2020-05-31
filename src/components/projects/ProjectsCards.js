@@ -18,7 +18,7 @@ const ProjectCard = (props) => {
                 {p.githubLink!==''?<a href={p.githubLink}>Github Link </a>:null}
                 {p.deployLink!==''?<a href={p.deployLink}>Deployed</a>:null}
             </div>
-            {props.admin?<div><button onClick={()=>{props.handleModal('update', p.id); props.setToEdit(p)}}>Edit</button><button>Delete</button></div>:null}
+            {props.admin?<div><button onClick={()=>{props.handleModal('update', p.id); props.setToEdit({...p, index:props.index})}}>Edit</button><button onClick={()=>props.delete(p.id, props.index)}>Delete</button></div>:null}
             {console.log('modal state', props.modal)}
             
         </div>
