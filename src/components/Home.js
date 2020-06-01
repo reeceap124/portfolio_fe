@@ -11,7 +11,7 @@ const Home = () => {
             <section className='cta'>
                 <img className='rpLogo' src={trimlogo} alt='logo'/>
                 <h3>Let's Work Together</h3>
-                <a href='/contact'><button>Contact Me</button></a>
+                <a href='/contact'><button className="button">Contact Me</button></a>
             </section>
          </div>
     )

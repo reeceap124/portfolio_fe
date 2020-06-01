@@ -48,8 +48,6 @@ const Work = () => {
         .finally(()=>{
             let arr = projects;
             const newarr = arr.splice(index, 1);
-            console.log('arr', arr);
-            console.log('newarr', newarr);
             setProjects([])
             setProjects(arr)
         })
@@ -74,8 +72,11 @@ const Work = () => {
     return(
         <div className={'contentWrapper ' + (modal.open?'modalOpen':null)}>
             {modal.open?<ProjectsModal modal={modal} setModal={setModal} toEdit={toEdit} setToEdit={setToEdit} reset={setProjects} set={projects}/>:null}
-            <h1>Recent work</h1>
-            {authState.isPending?<p>Loading authentication...</p>:(!authState.isAuthenticated?<div><button type='button' onClick={login}>Admin Login</button></div>:<div><button type='button' onClick={logout}>Log Out</button> <button type='button' onClick={()=>handleModal('add')}>Add New Project</button></div>)}
+            <div className='workHeader'>
+                <h1>Recent work</h1>
+                {authState.isPending?<p>Loading authentication...</p>:(!authState.isAuthenticated?<div><button type='button' onClick={login}>Admin Login</button></div>:<div><button type='button' onClick={logout}>Log Out</button> <button type='button' onClick={()=>handleModal('add')}>Add New Project</button></div>)}
+            </div>
+            
             <div className='projectsWrapper'>
                 {projects.map((val, index) => <ProjectCard key={val.id} project={val} admin={admin} modal={modal} setModal={setModal} handleModal={handleModal} setToEdit={setToEdit} delete={handleDelete} index={index}/>)}
             </div>

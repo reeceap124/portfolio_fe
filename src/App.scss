@@ -53,13 +53,30 @@ body {
     overflow: auto;
     border-radius: 3px;
 
+    .skillsLists {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .workHeader button {
+      background: none;;
+      border: none;
+      color: rgb(199, 201, 209);
+      border-radius: 5px;
+    }
+    .workHeader button:hover {
+      background: $primary;
+      color: whitesmoke;
+    }
+
     .projectsWrapper {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       .projectCard{
         margin: 5% 2%;
-        background: snow;
+        background: rgb(252, 253, 255);
         padding: 2%;
         border-radius: 5px;
         img {
@@ -114,7 +131,7 @@ body {
       }
 
 
-      button {
+      .button {
         font-size: 1rem;
         margin: 10% 25% 5% 25%;
         padding: 1% 2%;
@@ -165,7 +182,7 @@ body {
       max-width: 100%;
       // background-color: rgba(255, 255, 255, .5);
     }
-    button {
+    .button {
       font-size: 1rem;
       margin-top: 2%;
       padding: 1% 2%;
@@ -187,6 +204,21 @@ body {
       margin: 5%;
       margin-top: 10%;
       overflow: auto;
+      .workHeader {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        button {
+          background: none;;
+          border: none;
+          color: rgb(199, 201, 209);
+          border-radius: 5px;
+        }
+        button:hover {
+          background: $primary;
+          color: whitesmoke;
+        }
+      }
 
       .projectCard {
         min-width: 40%;
