@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const About = (props) => {
     console.log('*** MY about state ***', props.goTo)
@@ -37,9 +38,9 @@ const About = (props) => {
 
         <section>
             <h2>Who I Am</h2>
-            <p>Grow, Learn, Build.</p>
-            <p>I have no interest in stopping at good-enough.</p>
-            <p></p>
+            <p>Lifelong learner, passionate coder, industrious builder.</p>
+            <p>I'm a full-stack developer with a love for interesting problems and creative solutions! But when it comes to work that I can produce, words are cheap. I'd recommend the <Link to='/work'>work</Link> page (or even poke around the code for THIS site! It's built from scratch) to get a good feel for the tech skills.</p>
+            <p>When I'm not at my desk writing code or analyzing a problem I'm usually outdoors. I love camping with my Wife, rock climbing, and blacksmithing.</p>
         </section>
 
         <section>
