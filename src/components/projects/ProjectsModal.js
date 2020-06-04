@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 const ProjectsModal = (props) => {
-    
+    const token = props.token;
     const [project, setProject] = useState({
         name: '',
         description:'',
@@ -15,9 +15,9 @@ const ProjectsModal = (props) => {
 
     useEffect(()=> {
         if(props.modal.type === 'add') {
-            setEndpoint({method: 'post', uri: `http://localhost:3300/api/projects`})
+            setEndpoint({method: 'post', uri: 'https://reeces-portfolio.herokuapp.com/api/projects'})
         } else if (props.modal.type === 'update') {
-            setEndpoint({method: 'put', uri: `http://localhost:3300/api/projects/${props.toEdit.id}`})
+            setEndpoint({method: 'put', uri: `https://reeces-portfolio.herokuapp.com/api/projects/${props.toEdit.id}`})
             let withoutIndex = props.toEdit;
             delete withoutIndex.index;
             setProject(withoutIndex)
@@ -57,12 +57,15 @@ const ProjectsModal = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios[endpoint.method](endpoint.uri, project)
+        console.log("MODAL TOKEN", token)
+        console.log('in the handle submit')
+        console.log('uri', endpoint.uri)
+        axios[endpoint.method](`${endpoint.uri}`, project, {headers: {"Authorization": `Bearer ${token}`}})
         .then(res=> {
             console.log('submitted project data', res)
         })
         .catch(err => {
-            console.log('Woops, there was an error')
+            console.log('Woops, there was an error', err)
         })
         .finally(()=>{
             const newP = project

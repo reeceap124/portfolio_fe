@@ -56,7 +56,7 @@ export default function Contact() {
                 <label htmlFor='phone'>Phone:</label><input type='text' id='phone' name='phone' value={email.phone}  onChange={handleChanges}/>
                 <label htmlFor='message'><span className='required'>*</span>Message:</label><textarea id='message' name='message' rows='5' value={email.message}  onChange={handleChanges}></textarea>
 
-                <button type='submit'>{message}</button>
+                <button type='submit' className='button' >{message}</button>
                 
                 
             </form>

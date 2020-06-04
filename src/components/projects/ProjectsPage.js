@@ -20,15 +20,24 @@ const Work = () => {
         open: false,
         type: null
     })
+    const jwt = JSON.parse(localStorage.getItem('okta-token-storage'));
+    let token
+    if (jwt.accessToken) {
+        token = jwt.accessToken.value;
+    }
+    
+    
     useEffect(()=>{
         if (!authState.isAuthenticated) { 
             setAdmin(false)
         } else {
             setAdmin(true)
+            //secure get request to check if user exists in DB
+            //if not, then secure post to add user
         }
     }, [authState])
     useEffect(()=>{
-        axios.get('http://localhost:3300/api/projects')
+        axios.get('https://reeces-portfolio.herokuapp.com/api/projects')
         .then(res => {
             setProjects(res.data)
         })
@@ -38,7 +47,7 @@ const Work = () => {
     }, []);
 
     const handleDelete = (id, index) => {
-        axios.delete(`http://localhost:3300/api/projects/${id}`)
+        axios.delete(`https://reeces-portfolio.herokuapp.com/api/projects/${id}`, { headers: {"Authorization" : `Bearer ${token}`} })
         .then(res=>{
             console.log('deleted', res)
         })
@@ -71,7 +80,7 @@ const Work = () => {
 
     return(
         <div className={'contentWrapper ' + (modal.open?'modalOpen':null)}>
-            {modal.open?<ProjectsModal modal={modal} setModal={setModal} toEdit={toEdit} setToEdit={setToEdit} reset={setProjects} set={projects}/>:null}
+            {modal.open?<ProjectsModal modal={modal} setModal={setModal} toEdit={toEdit} setToEdit={setToEdit} reset={setProjects} set={projects} token={token}/>:null}
             <div className='workHeader'>
                 <h1>Recent work</h1>
                 {authState.isPending?<p>Loading authentication...</p>:(!authState.isAuthenticated?<div><button type='button' onClick={login}>Admin Login</button></div>:<div><button type='button' onClick={logout}>Log Out</button> <button type='button' onClick={()=>handleModal('add')}>Add New Project</button></div>)}
