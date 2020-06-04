@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+
+$text-primary: #b6b6b6;
+$text-secondary: #ececec;
+$bg-primary: #23232e;
+$bg-secondary: #141418;
+$primary: #074faf;
+$primary-font: 'Montserrat', sans-serif;
+
+
+
+:root{
+  text-align: start;
+  font-size: 16px;
+}
+
+// .App * {
+//   border: 1px solid gray;
+// }
+body {
+  height: 100vh;
+  background: url('./assets/mountain_bg.jpg') no-repeat;
+  background-size: 225%;
+  @media screen and (min-width: 500px) {
+    height: 90vh;
+  }
+  @media screen and (min-width: 1000px) {
+    background-size: 150%;
+  }
+  @media screen and (min-width: 1200px) {
+    background-size: 130%
+  }
+  @media screen and (min-width: 1400px) {
+    background-size: 100%
+  }
+}
+
+.App * {
+  font-family: $primary-font;
+}
+.App {
+  color: black;
+  margin: 0;
+  padding: 0;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h4 {
+    margin-top: 10%;
+  }
+  
+
+  .contentWrapper {
+    backdrop-filter: brightness(125%) blur(2px);
+    max-height: 100%;
+    height: 100%;
+    margin: 5%;
+    padding: 0 1% 3% 1%;
+    margin-bottom: auto;
+    overflow: auto;
+    border-radius: 3px;
+
+    .skillsLists {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .workHeader button {
+      background: none;;
+      border: none;
+      color: rgb(199, 201, 209);
+      border-radius: 5px;
+    }
+    .workHeader button:hover {
+      background: $primary;
+      color: whitesmoke;
+    }
+
+    .projectsWrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .projectCard{
+        margin: 5% 2%;
+        background: rgb(252, 253, 255);
+        padding: 2%;
+        border-radius: 5px;
+        img {
+          max-width: 75%;
+        }
+      }
+      .projectlinks {
+        a{
+          margin-right: 5%;
+          text-decoration: none;
+          color: $primary;
+          border: 1px solid $primary;
+          padding: 1%;
+          border-radius: 5px;
+        }
+        
+      }
+      
+    }
+    .projectModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: whitesmoke;
+      height: 100%;
+      width: 96%;
+      padding: 2%;
+      z-index: 99;
+
+      form {
+        margin: 5% 2%;
+        .imgSelectDisplay {
+        max-height: 5rem;
+        }
+      }
+      
+    }
+  }
+
+  .contactContent {
+    backdrop-filter: brightness(100%) blur(2px);
+    height:auto;
+    padding: 0;
+    .contactWrapper {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      padding: 2% 5%;
+      background-color: rgba(0,0,0, .1); 
+      .required {
+        color: red;
+      }
+
+      input {
+        margin: 2% 0;
+        border: none;
+      }
+
+
+      .button {
+        font-size: 1rem;
+        margin: 10% 25% 5% 25%;
+        padding: 1% 2%;
+        border: none;
+        border-radius: 5px;
+        background: $primary;
+        color: white;
+        
+      }
+    }
+  }
+
+  .navWrapper {
+    position: fixed;
+    z-index: 99;
+    width: 90%;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, .8);
+    margin: 5%;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 3px;
+
+    .navLink{
+      text-decoration: none;
+      color: black;
+      margin-left: 5%;
+      padding: 1%;
+      border-radius: 3px;
+    }
+
+    .navHome {
+      margin: 0 auto 0 0;
+    }
+
+    .navLink:hover {
+      color: white;
+      background: $primary
+    }
+    
+  }
+
+  .cta {
+    margin-top: 20%;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      // background-color: rgba(255, 255, 255, .5);
+    }
+    .button {
+      font-size: 1rem;
+      margin-top: 2%;
+      padding: 1% 2%;
+      border: none;
+      border-radius: 5px;
+      background: $primary;
+      color: white;
+    }
+  }
+
+  @media screen and (min-width: 500px) {
+    flex-direction: column;
+
+  
+
+    .contentWrapper {
+      backdrop-filter: brightness(130%) blur(3px);
+      height: 90vh;
+      margin: 5%;
+      margin-top: 10%;
+      overflow: auto;
+      .workHeader {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        button {
+          background: none;;
+          border: none;
+          color: rgb(199, 201, 209);
+          border-radius: 5px;
+        }
+        button:hover {
+          background: $primary;
+          color: whitesmoke;
+        }
+      }
+
+      .projectCard {
+        min-width: 40%;
+        
+      }
+      .fullModal{
+        position: sticky;
+        top:0;
+        left:0;
+        z-index: 95;
+        left:0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      
+
+      .modalBack {
+        position: absolute;
+        z-index: 98;
+        top: 0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0, .3);
+      }
+
+      .projectModal {
+        position: absolute;
+        top: 0;
+        margin: 5% 17%;
+        height: 50%;
+        width: 60%;
+        padding: 2%;
+        z-index: 99;
+        background-color: whitesmoke;
+        
+        form {
+          margin: 5% 10%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          
+          button {
+            margin:3% 5% 0 0;
+          }
+          .imgSelectDisplay {
+            max-width: 75%;
+          }
+        }
+        .modalInput{
+          margin-bottom: 2%;
+          width:90%;
+          display: flex;
+          justify-content: space-between;
+          .fileSelect {
+            padding-right: 0;
+            background: white;
+          }
+        }
+      }
+      }
+
+
+    }
+
+
+    .contactContent {
+      backdrop-filter: brightness(100%) blur(2px);
+      height: auto;
+      padding: 0;
+
+      .contactWrapper {
+        padding-top: 1%;
+        margin: 0;
+        
+        input {
+          width: 60%;
+        }
+        button {
+          margin-top: 5%;
+        }
+      }
+
+    }
+    
+    .navWrapper {
+      top: 0;
+      bottom: auto;
+      justify-content: space-between;
+
+      .navLink {
+        padding-right: 1%;
+      }
+    }
+
+    
+
+    
+  }
+
+  @media screen and (min-width: 1000px) {
+    margin: 3% 10% 0 10%;
+    height: 93vh;
+
+
+    .contentWrapper {
+      margin-top: 5%;
+      padding-top: 0;
+      overflow: auto;
+      .projectCard {
+        max-width: 27%;
+      }
+      
+      .fullModal {
+        .projectModal {
+          height: 65%;
+        }
+      }
+    }
+    .modalOpen {
+      overflow: hidden;
+    }
+    
+    .navWrapper {
+      margin: 2% 4%;
+      width: 72%;
+      
+    }
+
+    .cta {
+      margin: 5% auto 0;
+      
+    }
+    
+
+  }
+
+  @media screen and (min-width: 1300px) {
+    .cta {
+      margin-top: 2%;
+    }
+
+    .projectModal {
+      height: 70%;
+    }
+
+    .contactWrapper{
+      label {
+        padding: 0;
+        margin: 0;
+      }
+      input {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    
+  }
+
+}
