@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import ProjectsModal from './ProjectsModal';
 
 const ProjectCard = (props) => {
     const p = props.project;

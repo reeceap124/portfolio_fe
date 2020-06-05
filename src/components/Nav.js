@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 
 const Nav = () => {
-    const [showSub, setShowSub] = useState(false)
     return (
         <nav className='navWrapper'>
             <NavLink to='/' className='navLink navHome'>Reece</NavLink>

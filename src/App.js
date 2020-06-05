@@ -9,6 +9,7 @@ import Contact from './components/Contact'
 import Nav from './components/Nav';
 import {Security, SecureRoute, LoginCallback} from '@okta/okta-react'
 import config from './components/projects/oktaConfig'
+import EditPage from './components/projects/EditPage'
 
 function App() {
   return (
@@ -18,10 +19,11 @@ function App() {
       <Route exact path='/' component={Home}/>
       <Route path='/about' component={About}/>
       <Route path='/contact' component={Contact}/>
+      <Route path='/work' component ={ProjectsPage}/>
       <Security {...config}>
-        <Route path='/work' component ={ProjectsPage}/>
+        <Route path='/work_edits' component={EditPage}/>
         <Route path='/implicit/callback' component={LoginCallback}/>
-        <SecureRoute path='/admin_work' component={ProjectsPage}/>
+        <SecureRoute path='/admin_work' component={EditPage}/>
       </Security>
       
       
