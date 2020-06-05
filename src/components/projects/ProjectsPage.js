@@ -1,30 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {useHistory} from 'react-router-dom'
+// import {useHistory} from 'react-router-dom'
 import ProjectCard from './ProjectsCards';
-import { useOktaAuth } from '@okta/okta-react';
-import ProjectsModal from './ProjectsModal';
+// import { useOktaAuth } from '@okta/okta-react';
+// import ProjectsModal from './ProjectsModal';
 
 
 const Work = () => {
-    const history = useHistory()
+    // const history = useHistory()
     // const { authState, authService } = useOktaAuth();
     // const login = () => authService.login('/admin_work');
     // const logout = async () => {
     //     await authService.logout('/work')
     // };
     const [projects, setProjects] = useState([])
-    const [admin, setAdmin] = useState(null);
-    const [toEdit, setToEdit] = useState(null)
-    const [modal, setModal] = useState({
-        open: false,
-        type: null
-    })
-    const jwt = JSON.parse(localStorage.getItem('okta-token-storage'));
-    let token
-    if (jwt.accessToken) {
-        token = jwt.accessToken.value;
-    }
+    // const [admin, setAdmin] = useState(null);
+    // const [toEdit, setToEdit] = useState(null)
+    // const [modal, setModal] = useState({
+    //     open: false,
+    //     type: null
+    // })
+    // const jwt = JSON.parse(localStorage.getItem('okta-token-storage'));
+    // let token
+    // if (jwt.accessToken) {
+    //     token = jwt.accessToken.value;
+    // }
     
     
     // useEffect(()=>{
@@ -46,32 +46,32 @@ const Work = () => {
         })
     }, []);
 
-    const handleDelete = (id, index) => {
-        axios.delete(`https://reeces-portfolio.herokuapp.com/api/projects/${id}`, { headers: {"Authorization" : `Bearer ${token}`} })
-        .then(res=>{
-            console.log('deleted', res)
-        })
-        .catch(err=>{
-            console.log('there was an error deleting', err)
-        })
-        .finally(()=>{
-            let arr = projects;
-            const newarr = arr.splice(index, 1);
-            setProjects([])
-            setProjects(arr)
-        })
+    // const handleDelete = (id, index) => {
+    //     axios.delete(`https://reeces-portfolio.herokuapp.com/api/projects/${id}`, { headers: {"Authorization" : `Bearer ${token}`} })
+    //     .then(res=>{
+    //         console.log('deleted', res)
+    //     })
+    //     .catch(err=>{
+    //         console.log('there was an error deleting', err)
+    //     })
+    //     .finally(()=>{
+    //         let arr = projects;
+    //         const newarr = arr.splice(index, 1);
+    //         setProjects([])
+    //         setProjects(arr)
+    //     })
         
-    }
+    // }
 
-    const handleModal = (type, id) => {
-        setModal({
-            open: true,
-            type: type
-        })
+    // const handleModal = (type, id) => {
+    //     setModal({
+    //         open: true,
+    //         type: type
+    //     })
         
-    }
+    // }
 
-    console.log('editing state', toEdit)
+    
 
     //makes sure that when logged in path name is '/admin_work'
     // if (admin && history.location.pathname !== '/admin_work') {
@@ -79,8 +79,8 @@ const Work = () => {
     // } 
 
     return(
-        <div className={'contentWrapper ' + (modal.open?'modalOpen':null)}>
-            {modal.open?<ProjectsModal modal={modal} setModal={setModal} toEdit={toEdit} setToEdit={setToEdit} reset={setProjects} set={projects} token={token}/>:null}
+        <div className={'contentWrapper '}>
+            {/* {modal.open?<ProjectsModal modal={modal} setModal={setModal} toEdit={toEdit} setToEdit={setToEdit} reset={setProjects} set={projects} token={token}/>:null} */}
             <div className='workHeader'>
                 <h1>Recent work</h1>
                 {(projects.length < 1) ? <p>Loading...</p> : null}
@@ -88,7 +88,7 @@ const Work = () => {
             </div>
             
             <div className='projectsWrapper'>
-                {projects.map((val, index) => <ProjectCard key={val.id} project={val} admin={admin} modal={modal} setModal={setModal} handleModal={handleModal} setToEdit={setToEdit} delete={handleDelete} index={index}/>)}
+                {projects.map((val, index) => <ProjectCard key={val.id} project={val} />)}
             </div>
             
         </div>
