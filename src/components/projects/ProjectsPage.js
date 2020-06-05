@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom'
 import ProjectCard from './ProjectsCards';
-import { useOktaAuth } from '@okta/okta-react';
-import ProjectsModal from './ProjectsModal';
+// import { useOktaAuth } from '@okta/okta-react';
+// import ProjectsModal from './ProjectsModal';
 
 
 const Work = () => {
@@ -20,11 +20,11 @@ const Work = () => {
         open: false,
         type: null
     })
-    const jwt = JSON.parse(localStorage.getItem('okta-token-storage'));
-    let token
-    if (jwt.accessToken) {
-        token = jwt.accessToken.value;
-    }
+    // const jwt = JSON.parse(localStorage.getItem('okta-token-storage'));
+    // let token
+    // if (jwt.accessToken) {
+    //     token = jwt.accessToken.value;
+    // }
     
     
     // useEffect(()=>{
@@ -46,30 +46,30 @@ const Work = () => {
         })
     }, []);
 
-    const handleDelete = (id, index) => {
-        axios.delete(`https://reeces-portfolio.herokuapp.com/api/projects/${id}`, { headers: {"Authorization" : `Bearer ${token}`} })
-        .then(res=>{
-            console.log('deleted', res)
-        })
-        .catch(err=>{
-            console.log('there was an error deleting', err)
-        })
-        .finally(()=>{
-            let arr = projects;
-            const newarr = arr.splice(index, 1);
-            setProjects([])
-            setProjects(arr)
-        })
+    // const handleDelete = (id, index) => {
+    //     axios.delete(`https://reeces-portfolio.herokuapp.com/api/projects/${id}`, { headers: {"Authorization" : `Bearer ${token}`} })
+    //     .then(res=>{
+    //         console.log('deleted', res)
+    //     })
+    //     .catch(err=>{
+    //         console.log('there was an error deleting', err)
+    //     })
+    //     .finally(()=>{
+    //         let arr = projects;
+    //         const newarr = arr.splice(index, 1);
+    //         setProjects([])
+    //         setProjects(arr)
+    //     })
         
-    }
+    // }
 
-    const handleModal = (type, id) => {
-        setModal({
-            open: true,
-            type: type
-        })
+    // const handleModal = (type, id) => {
+    //     setModal({
+    //         open: true,
+    //         type: type
+    //     })
         
-    }
+    // }
 
     console.log('editing state', toEdit)
 
@@ -80,7 +80,7 @@ const Work = () => {
 
     return(
         <div className={'contentWrapper ' + (modal.open?'modalOpen':null)}>
-            {modal.open?<ProjectsModal modal={modal} setModal={setModal} toEdit={toEdit} setToEdit={setToEdit} reset={setProjects} set={projects} token={token}/>:null}
+            {/* {modal.open?<ProjectsModal modal={modal} setModal={setModal} toEdit={toEdit} setToEdit={setToEdit} reset={setProjects} set={projects} token={token}/>:null} */}
             <div className='workHeader'>
                 <h1>Recent work</h1>
                 {(projects.length < 1) ? <p>Loading...</p> : null}
