@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import Contact from './Contact'
 import trimlogo from '../assets/trimlogo.png'
 
 const Home = () => {
@@ -11,7 +13,7 @@ const Home = () => {
             <section className='cta'>
                 <img className='rpLogo' src={trimlogo} alt='logo'/>
                 <h3>Let's Work Together</h3>
-                <a href='/contact'><button className="button">Contact Me</button></a>
+                <Link to='/contact'><button className="button">Contact Me</button></Link>
             </section>
          </div>
     )
