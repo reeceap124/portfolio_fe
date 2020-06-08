@@ -20,7 +20,7 @@ const Work = () => {
         <div className={'contentWrapper '}>
             <div className='workHeader'>
                 <h1>Recent work</h1>
-                {(projects.length < 1) ? <p>Loading...</p><p>Waking up Heroku Server</p> : null}
+                {(projects.length < 1) ? <><p>Loading...</p><p>Waking up Heroku Server</p></> : null}
             </div>
             <div className='projectsWrapper'>
                 {projects.map((val, index) => <ProjectCard key={val.id} project={val} />)}
