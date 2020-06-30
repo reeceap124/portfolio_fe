@@ -36,10 +36,10 @@ const About = (props) => {
             
         </section>
 
-        <section>
+        {/* <section>
             <h2>Who I Am</h2>
             <p>Lifelong learner, passionate coder, industrious builder.</p>
-            <p>I'm a full-stack developer with a love for interesting problems and creative solutions! But when it comes to work that I can produce, words are cheap. I'd recommend the <Link to='/work'>work</Link> page (or even poke around the code for THIS site! It's built from scratch.) to get a good feel for the tech skills.</p>
+            <p>I'm a full-stack developer with a love for interesting problems and creative solutions!   But when it comes to work that I can produce, words are cheap. I'd recommend the <Link to='/work'>work</Link> page to get a good feel for my tech skills.</p>
             <p>I have an avid love for wild places. When we have the chance, my wife and I try to get out hiking and camping as often as possible. There's a simple peace to being able to watch and enjoy nature come alive around you.</p>
             <p>Another joy is blacksmithing. The internet is an amazing place, and being able to scrape together the knowledge to get started doing that and then go and practice has been a point of pride for me for a while.</p>
             <p>I'm terrible at video games, but have a blast playing with friends. Coffee addict. And rock climber!</p>
@@ -54,6 +54,16 @@ const About = (props) => {
             <p>As I began learning I came across an <a href="https://www.youtube.com/watch?v=gLdXxFS8BV4" target="_blank">advertisement</a> for Lambda School. The idea of a school that invested in me, was tempting, to say the least. But I was skeptical, and kept an eye on the program for over a year while I continued to study independently.</p>
             <p>Then, opportunity! There was a bit of a lull in work, and I had stored up enough money to support my wife and I for the course of the Lambda curriculum.</p>
             <p>It has been fun, challenging, occasionally exhausting, and entirely worth it. Growing to be able to plan out a full site, build from scratch, jump into existing code bases, and lead engineering teams has been an amazing journey. And I can't wait to see where it takes me next.</p>
+        </section> */}
+        <section>
+            <h2>Who I am?</h2>
+            <p>Lifelong learner, passionate coder, industrious builder. I'm a full-stack developer with a love for interesting problems, creative solutions, and the painful growing process in between the two!</p>
+            <p>When I'm not herding 1s and 0s you'll often find me out in wild places with my wife, learning about something in programming that interests me, or in the workshop building physical projects.</p>
+        </section>
+        <section>
+            <h2>How I got here</h2>
+            <p>Well to be entirely honest, only with the support of a very loving and patient wife who has been there every step of the way.</p>
+            <p>Coding took me completely by storm, when I was in the middle of realizing and thinking about the toll that being a tradesman was physically taking. I started self-studying on the evenings and weekends, and found that this was something that I genuinely enjoy and derive fulfillment from! From there it was a journey of plotting out how to get into tech, and starting that journey.</p>
         </section>
         
         
