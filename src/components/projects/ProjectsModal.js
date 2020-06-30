@@ -24,7 +24,7 @@ const ProjectsModal = (props) => {
         } else {
             console.log('nothing to see here')
         }
-    },[])
+    })
 
     
     const img2Base64 = (img) => {

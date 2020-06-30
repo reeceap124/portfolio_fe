@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
 
 const About = (props) => {
     console.log('*** MY about state ***', props.goTo)

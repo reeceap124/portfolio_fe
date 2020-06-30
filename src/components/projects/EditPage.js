@@ -59,8 +59,9 @@ const EditPage = () => {
         .finally(()=>{
             let arr = editprojects;
             const newarr = arr.splice(index, 1);
+            console.log(newarr)
             seteditprojects([])
-            seteditprojects(arr)
+            seteditprojects(newarr)
         })
         
     }

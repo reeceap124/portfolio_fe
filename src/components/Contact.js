@@ -10,7 +10,6 @@ export default function Contact() {
         phone: '',
         message: ''
     })
-    const [sent, setSent] = useState(false)
     const [message, setMessage] = useState('Send')
     const handleChanges = (e) => {
         e.preventDefault();
