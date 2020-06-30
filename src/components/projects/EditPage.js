@@ -5,7 +5,8 @@ import ProjectCard from './ProjectsCards';
 import { useOktaAuth } from '@okta/okta-react';
 import ProjectsModal from './ProjectsModal';
 
-//Thanks for visiting and taking a peak at my code! I'd love to be able to show you this page combined with the regular projectsPage that you see on the deployed site, but unfortunately
+//Thanks for visiting and taking a peak at my code! I'd love to be able to show you this page combined with the regular projectsPage that you see on the deployed site, but unfortunately I'm running into some issues when this get code gets deployed live that I'm still working through.
+//If your interested in seeing what I'm so disappointed can't be fully displayed in production yet feel free to send me a message via the contact page or on Linkedin. We could consider it an interview!
 const EditPage = () => {
     const history = useHistory()
     const { authState, authService } = useOktaAuth();
